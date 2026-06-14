@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+pydantic
+python-dotenv
+groq
+langchain
+langchain-google-genai
+sqlalchemy
+psycopg2-binary
+google-genai
+pgvector
+langchain-text-splitters
