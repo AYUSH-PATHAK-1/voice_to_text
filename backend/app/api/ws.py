@@ -1,5 +1,5 @@
 from fastapi import APIRouter, WebSocket
-from backend.app.services.websocket_manager import WebSocketManager
+from app.services.websocket_manager import WebSocketManager
 
 router = APIRouter()
 

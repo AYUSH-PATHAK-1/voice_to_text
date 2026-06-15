@@ -1,13 +1,13 @@
-# from backend.app.db.session import SessionLocal
+# from app.db.session import SessionLocal
 
-# from backend.app.models.meeting import Meeting
-# from backend.app.models.transcript import Transcript
-# from backend.app.models.analysis import Analysis
-# from backend.app.models.key_point import KeyPoint
-# from backend.app.models.action_item import ActionItem
-# from backend.app.models.meeting_chunk import MeetingChunk
-# from backend.app.services.chunking_service import ChunkingService
-# from backend.app.services.embedding_service import EmbeddingService
+# from app.models.meeting import Meeting
+# from app.models.transcript import Transcript
+# from app.models.analysis import Analysis
+# from app.models.key_point import KeyPoint
+# from app.models.action_item import ActionItem
+# from app.models.meeting_chunk import MeetingChunk
+# from app.services.chunking_service import ChunkingService
+# from app.services.embedding_service import EmbeddingService
 
 
 # class MeetingService:
@@ -102,12 +102,12 @@
 
 
 
-from backend.app.db.session import SessionLocal
-from backend.app.models.meeting import Meeting
-from backend.app.models.transcript import Transcript
-from backend.app.models.analysis import Analysis
-from backend.app.models.key_point import KeyPoint
-from backend.app.models.action_item import ActionItem
+from app.db.session import SessionLocal
+from app.models.meeting import Meeting
+from app.models.transcript import Transcript
+from app.models.analysis import Analysis
+from app.models.key_point import KeyPoint
+from app.models.action_item import ActionItem
 
 class MeetingService:
 

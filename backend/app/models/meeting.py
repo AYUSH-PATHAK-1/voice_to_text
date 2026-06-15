@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 
-from backend.app.db.database import Base
+from app.db.database import Base
 
 
 class Meeting(Base):

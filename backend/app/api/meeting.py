@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from backend.app.services.analysis_service import AnalysisService
+from app.services.analysis_service import AnalysisService
 
 router = APIRouter(
     prefix="/meetings",

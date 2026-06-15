@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from backend.app.schemas.insight import InsightRequest
-from backend.app.services.insight_service import InsightService
+from app.schemas.insight import InsightRequest
+from app.services.insight_service import InsightService
 
 router = APIRouter(
     prefix="/insights",

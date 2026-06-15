@@ -1,6 +1,6 @@
-from backend.app.db.session import SessionLocal
+from app.db.session import SessionLocal
 from sqlalchemy import text
-from backend.app.services.embedding_service import EmbeddingService
+from app.services.embedding_service import EmbeddingService
 
 
 class SearchService:

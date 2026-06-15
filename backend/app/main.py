@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.api.upload import router as upload_router
-from backend.app.db.init_db import init_db
-from backend.app.api.meeting import router as meeting_router
-from backend.app.api.search import router as search_router
-from backend.app.api.chat import router as chat_router
-from backend.app.api.insight import router as insight_router
-from backend.app.api.job import router as job_router
-from backend.app.api.analytics import router as analytics_router
-from backend.app.api.ws import router as ws_router
+from app.api.upload import router as upload_router
+from app.db.init_db import init_db
+from app.api.meeting import router as meeting_router
+from app.api.search import router as search_router
+from app.api.chat import router as chat_router
+from app.api.insight import router as insight_router
+from app.api.job import router as job_router
+from app.api.analytics import router as analytics_router
+from app.api.ws import router as ws_router
 app = FastAPI(
     title="AI Meeting Intelligence API"
 )

@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import Column, Integer, Text, DateTime, String
 from datetime import datetime
 
-from backend.app.db.database import Base
+from app.db.database import Base
 
 
 class ChatHistory(Base):

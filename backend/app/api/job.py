@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.app.services.JobService import JobService
+from app.services.JobService import JobService
 
 router = APIRouter(prefix="/jobs", tags=["Jobs"])
 

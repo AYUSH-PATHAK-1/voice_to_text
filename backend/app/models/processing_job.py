@@ -1,6 +1,6 @@
 import uuid
 from sqlalchemy import Column, Integer, Text, String
-from backend.app.db.database import Base
+from app.db.database import Base
 
 
 class ProcessingJob(Base):

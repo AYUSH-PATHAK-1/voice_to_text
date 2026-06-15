@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Text, ForeignKey
 from sqlalchemy.orm import relationship
 
-from backend.app.db.database import Base
+from app.db.database import Base
 
 
 class KeyPoint(Base):

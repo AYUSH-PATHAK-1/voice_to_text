@@ -1,8 +1,8 @@
-from backend.app.db.session import SessionLocal
-from backend.app.models.action_item import ActionItem
-from backend.app.models.analysis import Analysis
-from backend.app.models.key_point import KeyPoint
-from backend.app.models.meeting import Meeting
+from app.db.session import SessionLocal
+from app.models.action_item import ActionItem
+from app.models.analysis import Analysis
+from app.models.key_point import KeyPoint
+from app.models.meeting import Meeting
 
 
 class AnalyticsService:

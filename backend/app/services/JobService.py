@@ -1,5 +1,5 @@
-from backend.app.db.session import SessionLocal
-from backend.app.models.processing_job import ProcessingJob
+from app.db.session import SessionLocal
+from app.models.processing_job import ProcessingJob
 
 
 class JobService:

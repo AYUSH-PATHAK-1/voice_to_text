@@ -1,7 +1,7 @@
-from backend.app.services.search_service import SearchService
-from backend.app.services.llm_service import llm
-from backend.app.models.chat_history import ChatHistory
-from backend.app.db.session import SessionLocal
+from app.services.search_service import SearchService
+from app.services.llm_service import llm
+from app.models.chat_history import ChatHistory
+from app.db.session import SessionLocal
 
 
 

@@ -1,6 +1,6 @@
-from backend.app.services.search_service import SearchService
-from backend.app.services.llm_service import llm
-from backend.app.schemas.InsightOutput import InsightOutput
+from app.services.search_service import SearchService
+from app.services.llm_service import llm
+from app.schemas.InsightOutput import InsightOutput
 
 
 class InsightService:

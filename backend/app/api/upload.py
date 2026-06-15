@@ -1,10 +1,10 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-# from backend.app.services.transcription_service import TranscriptionService
-# from backend.app.services.analysis_service import AnalysisService
-from backend.app.db.session import SessionLocal
-from backend.app.services.meeting_service import MeetingService
-from backend.app.models.processing_job import ProcessingJob
-from backend.app.workers.meeting_worker import process_meeting
+# from app.services.transcription_service import TranscriptionService
+# from app.services.analysis_service import AnalysisService
+from app.db.session import SessionLocal
+from app.services.meeting_service import MeetingService
+from app.models.processing_job import ProcessingJob
+from app.workers.meeting_worker import process_meeting
 from pathlib import Path
 import shutil
 import uuid

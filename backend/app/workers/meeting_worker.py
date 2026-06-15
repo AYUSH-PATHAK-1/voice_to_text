@@ -1,11 +1,11 @@
-# from backend.app.db.session import SessionLocal
-# from backend.app.models.processing_job import ProcessingJob
-# from backend.app.services.analysis_service import AnalysisService
-# from backend.app.services.transcription_service import TranscriptionService
-# from backend.app.services.meeting_service import MeetingService
-# from backend.app.services.embedding_service import EmbeddingService
-# from backend.app.services.chunking_service import ChunkingService
-# from backend.app.models.meeting_chunk import MeetingChunk
+# from app.db.session import SessionLocal
+# from app.models.processing_job import ProcessingJob
+# from app.services.analysis_service import AnalysisService
+# from app.services.transcription_service import TranscriptionService
+# from app.services.meeting_service import MeetingService
+# from app.services.embedding_service import EmbeddingService
+# from app.services.chunking_service import ChunkingService
+# from app.models.meeting_chunk import MeetingChunk
 
 
 # def process_meeting(job_id: int, file_path: str, meeting_id: int,original_filename: str, saved_filename: str):
@@ -61,15 +61,15 @@
 
 # import asyncio
 
-# from backend.app.db.session import SessionLocal
-# from backend.app.models.processing_job import ProcessingJob
-# from backend.app.services.analysis_service import AnalysisService
-# from backend.app.services.transcription_service import TranscriptionService
-# from backend.app.services.meeting_service import MeetingService
-# from backend.app.services.embedding_service import EmbeddingService
-# from backend.app.services.chunking_service import ChunkingService
-# from backend.app.models.meeting_chunk import MeetingChunk
-# from backend.app.services.websocket_manager import WebSocketManager
+# from app.db.session import SessionLocal
+# from app.models.processing_job import ProcessingJob
+# from app.services.analysis_service import AnalysisService
+# from app.services.transcription_service import TranscriptionService
+# from app.services.meeting_service import MeetingService
+# from app.services.embedding_service import EmbeddingService
+# from app.services.chunking_service import ChunkingService
+# from app.models.meeting_chunk import MeetingChunk
+# from app.services.websocket_manager import WebSocketManager
 
 
 # # -----------------------------
@@ -201,15 +201,15 @@
 import asyncio
 from pathlib import Path
 
-from backend.app.db.session import SessionLocal
-from backend.app.models.processing_job import ProcessingJob
-from backend.app.services.analysis_service import AnalysisService
-from backend.app.services.transcription_service import TranscriptionService
-from backend.app.services.meeting_service import MeetingService
-from backend.app.services.embedding_service import EmbeddingService
-from backend.app.services.chunking_service import ChunkingService
-from backend.app.models.meeting_chunk import MeetingChunk
-from backend.app.services.websocket_manager import WebSocketManager
+from app.db.session import SessionLocal
+from app.models.processing_job import ProcessingJob
+from app.services.analysis_service import AnalysisService
+from app.services.transcription_service import TranscriptionService
+from app.services.meeting_service import MeetingService
+from app.services.embedding_service import EmbeddingService
+from app.services.chunking_service import ChunkingService
+from app.models.meeting_chunk import MeetingChunk
+from app.services.websocket_manager import WebSocketManager
 
 
 # -----------------------------

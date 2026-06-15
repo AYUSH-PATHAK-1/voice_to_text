@@ -3,10 +3,10 @@ import os
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from backend.app.db.session import SessionLocal
-from backend.app.schemas.meeting_analysis import MeetingAnalysis
-from backend.app.models.meeting import Meeting
-from backend.app.models.analysis import Analysis
+from app.db.session import SessionLocal
+from app.schemas.meeting_analysis import MeetingAnalysis
+from app.models.meeting import Meeting
+from app.models.analysis import Analysis
 from sqlalchemy.orm import joinedload
 
 load_dotenv()
