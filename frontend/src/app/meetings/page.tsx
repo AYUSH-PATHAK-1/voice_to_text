@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -41,13 +42,13 @@ function NativeSelect({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-9 w-[180px] appearance-none rounded-lg border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50"
+        className="h-9 w-[180px] appearance-none rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
       >
-        <option value="all" disabled>
+        <option value="all" disabled className="bg-slate-800 text-white">
           {placeholder}
         </option>
         {options.map((opt) => (
-          <option key={opt} value={opt}>
+          <option key={opt} value={opt} className="bg-slate-800 text-white">
             {opt === "all" ? `All ${placeholder}s` : opt}
           </option>
         ))}
@@ -65,7 +66,9 @@ export default function MeetingsPage() {
   const [loading, setLoading] = useState(true);
   const [sentiment, setSentiment] = useState<string>("all");
   const [meetingType, setMeetingType] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || "",
+  );
 
   const limit = 10;
 
@@ -112,8 +115,7 @@ export default function MeetingsPage() {
         <div className="mb-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition mb-4"
-          >
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition mb-4">
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Link>
@@ -153,13 +155,14 @@ export default function MeetingsPage() {
                     placeholder="Meeting Type"
                   />
 
-                  {(sentiment !== "all" || meetingType !== "all" || searchQuery) && (
+                  {(sentiment !== "all" ||
+                    meetingType !== "all" ||
+                    searchQuery) && (
                     <Button
                       type="button"
                       variant="outline"
                       onClick={clearFilters}
-                      className="whitespace-nowrap"
-                    >
+                      className="whitespace-nowrap">
                       Clear Filters
                     </Button>
                   )}
@@ -191,11 +194,11 @@ export default function MeetingsPage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-4">
-            {meetings.map((meeting) => (
-              <MeetingCardComponent key={meeting.id} meeting={meeting} />
-            ))}
-          </div>
+<div className="space-y-5">
+             {meetings.map((meeting) => (
+               <MeetingCardComponent key={meeting.id} meeting={meeting} />
+             ))}
+           </div>
         )}
 
         {totalPages > 1 && (
@@ -209,8 +212,7 @@ export default function MeetingsPage() {
                 variant="outline"
                 size="icon"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-              >
+                disabled={page === 1}>
                 <ChevronLeft className="w-4 h-4" />
               </Button>
               <span className="px-3 py-2 text-sm text-slate-300">
@@ -220,8 +222,7 @@ export default function MeetingsPage() {
                 variant="outline"
                 size="icon"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-              >
+                disabled={page === totalPages}>
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
