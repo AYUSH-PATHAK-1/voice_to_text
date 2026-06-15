@@ -24,3 +24,8 @@ export interface RecentMeeting {
   meeting_type: string;
   sentiment: string;
 }
+
+export interface ProcessingStats {
+  avg_processing_time_seconds: number;
+  total_processing_jobs: number;
+}

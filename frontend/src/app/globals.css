@@ -1,11 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
+  --background: #0a0a0f;
   --foreground: #f8fafc;
+  --card: #11131a;
+  --card-foreground: #f8fafc;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --border: #2d3748;
+  --input: #1e293b;
+  --ring: #6366f1;
+  --destructive: #ef4444;
+  --radius: 0.75rem;
+}
+
+@theme {
+  --color-neon-purple: #8b5cf6;
+  --color-neon-blue: #3b82f6;
+  --color-neon-cyan: #06b6d4;
+  --color-neon-green: #10b981;
+  --color-neon-pink: #ec4899;
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top left, var(--background), #050508);
   color: var(--foreground);
+  font-feature-settings: "ss01" on, "ss02" on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
