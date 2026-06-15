@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+export const dynamic = "force-dynamic";
+
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import DashboardLayout from "@/components/dashboard-layout";
@@ -42,8 +45,7 @@ function NativeSelect({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-9 w-[180px] appearance-none rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
-      >
+        className="h-9 w-[180px] appearance-none rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-white shadow-sm outline-none focus:ring-2 focus:ring-blue-500">
         <option value="all" disabled className="bg-slate-800 text-white">
           {placeholder}
         </option>
@@ -58,7 +60,7 @@ function NativeSelect({
   );
 }
 
-export default function MeetingsPage() {
+function MeetingsContent() {
   const searchParams = useSearchParams();
   const [meetings, setMeetings] = useState<MeetingListItem[]>([]);
   const [total, setTotal] = useState(0);
@@ -194,11 +196,11 @@ export default function MeetingsPage() {
             </CardContent>
           </Card>
         ) : (
-<div className="space-y-5">
-             {meetings.map((meeting) => (
-               <MeetingCardComponent key={meeting.id} meeting={meeting} />
-             ))}
-           </div>
+          <div className="space-y-5">
+            {meetings.map((meeting) => (
+              <MeetingCardComponent key={meeting.id} meeting={meeting} />
+            ))}
+          </div>
         )}
 
         {totalPages > 1 && (
@@ -228,7 +230,15 @@ export default function MeetingsPage() {
             </div>
           </div>
         )}
-      </div>
-    </DashboardLayout>
+</div>
+       </DashboardLayout>
+   );
+}
+
+export default function MeetingsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MeetingsContent />
+    </Suspense>
   );
 }
