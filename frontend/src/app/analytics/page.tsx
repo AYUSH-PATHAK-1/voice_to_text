@@ -29,12 +29,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import AuthGuard from "@/components/auth-guard";
 
-function SentimentChart({
-  overview,
-}: {
-  overview: AnalyticsOverview | null;
-}) {
+function SentimentChart({ overview }: { overview: AnalyticsOverview | null }) {
   if (!overview) return null;
 
   const total = overview.total_meetings || 1;
@@ -189,8 +186,7 @@ function TopicsCard({ data }: { data: TopicCount | null }) {
           {entries.map(([topic, count]) => (
             <span
               key={topic}
-              className="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300"
-            >
+              className="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
               {topic} ({count})
             </span>
           ))}
@@ -217,11 +213,8 @@ function RecentMeetingsCard({ data }: { data: RecentMeeting[] | null }) {
             <Link
               key={meeting.meeting_id}
               href={`/meetings/${meeting.meeting_id}`}
-              className="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-600 transition-colors"
-            >
-              <p className="text-sm text-white truncate">
-                {meeting.filename}
-              </p>
+              className="block p-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-600 transition-colors">
+              <p className="text-sm text-white truncate">{meeting.filename}</p>
               <div className="flex gap-2 mt-1">
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-700 text-slate-300">
                   {meeting.meeting_type}
@@ -240,11 +233,13 @@ function RecentMeetingsCard({ data }: { data: RecentMeeting[] | null }) {
 
 export default function AnalyticsPage() {
   const [overview, setOverview] = useState<AnalyticsOverview | null>(null);
-  const [meetingTypes, setMeetingTypes] = useState<MeetingTypesData | null>(null);
+  const [meetingTypes, setMeetingTypes] = useState<MeetingTypesData | null>(
+    null,
+  );
   const [actionItems, setActionItems] = useState<ActionItemsStats | null>(null);
   const [topics, setTopics] = useState<TopicCount | null>(null);
   const [recentMeetings, setRecentMeetings] = useState<RecentMeeting[] | null>(
-    null
+    null,
   );
   const [loading, setLoading] = useState(true);
 
@@ -282,37 +277,41 @@ export default function AnalyticsPage() {
 
   if (loading) {
     return (
-      <DashboardLayout>
-        <div className="flex items-center justify-center h-[60vh]">
-          <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
-        </div>
-      </DashboardLayout>
+      <AuthGuard>
+        <DashboardLayout>
+          <div className="flex items-center justify-center h-[60vh]">
+            <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+          </div>
+        </DashboardLayout>
+      </AuthGuard>
     );
   }
 
   return (
-    <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-10">
-          <h1 className="text-5xl font-bold text-white">Analytics</h1>
-          <p className="text-slate-400 mt-2">
-            Insights and statistics from your meetings
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-6">
-            <SentimentChart overview={overview} />
-            <MeetingTypesChart data={meetingTypes} />
-            <TopicsCard data={topics} />
+    <AuthGuard>
+      <DashboardLayout>
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10">
+            <h1 className="text-5xl font-bold text-white">Analytics</h1>
+            <p className="text-slate-400 mt-2">
+              Insights and statistics from your meetings
+            </p>
           </div>
 
-          <div className="space-y-6">
-            <ActionItemsCard data={actionItems} />
-            <RecentMeetingsCard data={recentMeetings} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-6">
+              <SentimentChart overview={overview} />
+              <MeetingTypesChart data={meetingTypes} />
+              <TopicsCard data={topics} />
+            </div>
+
+            <div className="space-y-6">
+              <ActionItemsCard data={actionItems} />
+              <RecentMeetingsCard data={recentMeetings} />
+            </div>
           </div>
         </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </AuthGuard>
   );
 }

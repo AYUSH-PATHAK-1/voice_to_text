@@ -1,16 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-export async function uploadAudio(file: File): Promise<{ message: string; job_id: string; meeting_id: number; status: string }> {
+function getAuthHeaders() {
+  const token = localStorage.getItem("firebase_token");
+
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+}
+
+export async function uploadAudio(file: File): Promise<{
+  message: string;
+  job_id: string;
+  meeting_id: number;
+  status: string;
+}> {
   const formData = new FormData();
   formData.append("file", file);
 
   const response = await fetch(`${API_BASE_URL}/upload`, {
     method: "POST",
+    headers: getAuthHeaders(),
     body: formData,
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: "Upload failed" }));
+    const error = await response
+      .json()
+      .catch(() => ({ detail: "Upload failed" }));
     throw new Error(error.detail || "Upload failed");
   }
   return response.json();
@@ -27,11 +44,14 @@ export async function getMeetings(params?: {
   if (params?.page) queryParams.set("page", String(params.page));
   if (params?.limit) queryParams.set("limit", String(params.limit));
   if (params?.sentiment) queryParams.set("sentiment", params.sentiment);
-  if (params?.meeting_type) queryParams.set("meeting_type", params.meeting_type);
+  if (params?.meeting_type)
+    queryParams.set("meeting_type", params.meeting_type);
   if (params?.search) queryParams.set("search", params.search);
 
   const url = `${API_BASE_URL}/meetings${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: getAuthHeaders(),
+  });
   if (!response.ok) throw new Error("Failed to fetch meetings");
   return response.json();
 }
@@ -103,7 +123,10 @@ export async function chatGlobal(question: string): Promise<{
 }> {
   const response = await fetch(`${API_BASE_URL}/chat/global`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders(),
+    },
     body: JSON.stringify({ question }),
   });
   if (!response.ok) throw new Error("Failed to chat");
@@ -112,11 +135,17 @@ export async function chatGlobal(question: string): Promise<{
 
 export async function chatWithMeeting(
   meetingId: number,
-  question: string
-): Promise<{ answer: string; sources: { meeting_id: number; chunk_id: number }[] }> {
+  question: string,
+): Promise<{
+  answer: string;
+  sources: { meeting_id: number; chunk_id: number }[];
+}> {
   const response = await fetch(`${API_BASE_URL}/chat/meeting/${meetingId}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders(),
+    },
     body: JSON.stringify({ question }),
   });
   if (!response.ok) throw new Error("Failed to chat with meeting");
@@ -133,7 +162,10 @@ export async function semanticSearch(query: string): Promise<
 > {
   const response = await fetch(`${API_BASE_URL}/search/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders(),
+    },
     body: JSON.stringify({ query }),
   });
   if (!response.ok) throw new Error("Failed to search");
@@ -143,7 +175,10 @@ export async function semanticSearch(query: string): Promise<
 export async function generateInsight(question: string): Promise<any> {
   const response = await fetch(`${API_BASE_URL}/insights/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeaders(),
+    },
     body: JSON.stringify({ question }),
   });
   if (!response.ok) throw new Error("Failed to generate insight");
