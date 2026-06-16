@@ -1,1 +1,1 @@
-export const ALLOWED_EMAILS = ["coolspeedy7@gmail.com"];
+export const ALLOWED_EMAILS = [process.env.NEXT_PUBLIC_ALLOWED_EMAILS];
